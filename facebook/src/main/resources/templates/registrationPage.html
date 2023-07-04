@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Facebook Registration</title>
+    <link rel="stylesheet" th:href="@{/css/signupStyle.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Create an Account</h1>
+    <div th:if="${errorMessage}" class="error-message">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <form th:action="@{/facebookClone/signup}" method="post" th:object="${appUser}">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" th:field="*{firstName}" required="required" />
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" th:field="*{lastName}" required="required" />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" th:field="*{email}" required="required" />
+        </div>
+
+        <div class="form-group">
+            <label for="dateOfBirth">Date of Birth</label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" th:field="*{dateOfBirth}" required="required" />
+        </div>
+
+        <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" th:field="*{country}" required="required" />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" th:field="*{password}" required="required" />
+        </div>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <p>By clicking Sign Up, you agree to our <a href="#">Terms</a> and acknowledge that you have read our <a href="#">Data Policy</a>, including our <a href="#">Cookie Use Policy</a>.</p>
+
+    <hr />
+
+    <p>Already have an account? <a href="/facebookClone/login">Log In</a></p>
+</div>
+</body>
+</html>
+
+

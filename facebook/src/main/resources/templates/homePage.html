@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Facebook - Create Post</title>
+    <link rel="stylesheet" th:href="@{/css/homeStyle.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Welcome Home</h1>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Friends</a></li>
+                <li><a href="#">Messages</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        <div class="left-sidebar">
+            <div class="profile-info">
+<!--                <img th:src="@{/images/profile-pic.jpg}" alt="Profile Picture" />-->
+<!--                <h2 th:text="${AppUser.firstName} + ' ' + ${AppUsser.lastName}"></h2>-->
+<!--                <p th:text="${AppUser.email}"></p>-->
+<!--                <p th:text="${AppUser.country}"></p>-->
+            </div>
+
+            <div class="friends-list">
+                <h3>Friends</h3>
+                <ul>
+                    <li>Friend 1</li>
+                    <li>Friend 2</li>
+                    <li>Friend 3</li>
+                    <!-- Add more friend items dynamically -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="feed">
+            <div class="post-form">
+                <form th:action="@{/facebookClone/post}" method="post">
+                    <textarea name="postContent" rows="3" placeholder="Write a post..."></textarea>
+<!--                    <input type="hidden" th:field="*{appUser.id}" th:value="1" />-->
+                    <button type="submit">Post</button>
+                </form>
+            </div>
+
+            <div class="post-list">
+                <h3>Your Posts</h3>
+                <ul>
+                    <li th:each="post : ${post}">
+                        <div class="post-item">
+                            <div class="user-info">
+<!--                                <img th:src="@{/images/profile-pic.jpg}" alt="Profile Picture" />-->
+<!--                                <h4 th:text="${appUser.getFirstName()} + ' ' + ${appUser.getLastName()}"></h4>-->
+                            </div>
+                            <p th:text="${post.postMessage}"></p>
+                        </div>
+                    </li>
+                    <table>
+                        <form th:action="@{/facebookClone/all-posts}" method="post">
+                            <tbody>
+                            <tr th:each="post : ${posts}">
+                                <td th:text="${post}"></td>
+                                <button type="submit">View all post</button>
+                                <!--                                    <td th:text="${post.appUser.username}"></td> &lt;!&ndash; Assuming there is a "username" property in the AppUser entity &ndash;&gt;-->
+                            </tr>
+                            </tbody>
+                        </form>
+                    </table>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Facebook</p>
+    </footer>
+</div>
+</body>
+</html>
